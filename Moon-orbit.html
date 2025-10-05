@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Orbit</title>
+<style>
+:root {
+  --size: min(60vmin, 600px);
+  --earth-size: calc(var(--size) * 0.25);
+  --moon-size: calc(var(--size) * 0.08);
+  --orbit-radius: calc(var(--size) * 0.45);
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #020617, #071833);
+  font-family: Arial, sans-serif;
+}
+
+.scene {
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+}
+
+.earth {
+  width: var(--earth-size);
+  height: var(--earth-size);
+  background: radial-gradient(circle at 30% 30%, #2fd3ff, #1b6aff 60%, #0b2c6a 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset -10px -8px 20px rgba(0, 0, 0, 0.6),
+              0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+.orbit {
+  width: var(--orbit-radius);
+  height: var(--orbit-radius);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: spin 8s linear infinite;
+}
+
+.orbit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.moon {
+  width: var(--moon-size);
+  height: var(--moon-size);
+  background: radial-gradient(circle at 30% 25%, #fff, #dcdcdc 40%, #b8b8b8 70%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --size: 88vmin;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="earth"></div>
+    <div class="orbit">
+      <div class="moon"></div>
+    </div>
+  </div>
+</body>
+</html>
